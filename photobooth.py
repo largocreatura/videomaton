@@ -19,11 +19,11 @@ from signal import alarm, signal, SIGALRM, SIGKILL
 ############################ VARIABLES #############################
 ####################################################################
 
-button1_pin = 18 # pin START
-button2_pin = 25 # pin UPLOAD
+button1_pin = 23 # pin START
+button2_pin = 22 # pin UPLOAD
 button3_pin = 21 # pin SAVE LOCAL
-button4_pin = 12 # pin EXIT PROGRAM
-button5_pin = 17 # pin SHUTDOWN
+button4_pin = 17 # pin EXIT PROGRAM
+button5_pin = 27 # pin SHUTDOWN
 
 post_online = 0 # UPLOAD: 1. NO UPLOAD: 0
 total_pics = 1 # N PICS
