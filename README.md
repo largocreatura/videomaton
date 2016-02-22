@@ -22,3 +22,59 @@ La primera tarea es conseguir sincronizar el video obtenido por el m√≥dulo de c√
 - Hilo de Reddit: https://www.reddit.com/r/raspberry_pi/comments/3kj8q7/trying_to_sync_usb_audio_with_video_from_the/
 
 ...
+
+Vamos por partes
+
+## 1 - Instalar Raspbian en la tarjeta SD
+
+- [Linux](linux.md)
+- [Mac OS](mac.md)
+- [Windows](windows.md)
+
+Una vez hayamos instalado Raspbian en la tarjeta, en la Raspi apagada metemos la tarjeta sd y la encendemos.
+
+
+## 2 - Acceder por SSH a la RPi
+https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md
+https://www.raspberrypi.org/documentation/remote-access/ip-address.md
+Problemas de acceso con ssh: 
+
+ssh pi@<IpAdressRaspberryPi>
+password: raspberry
+
+sudo raspi-config
+- Expand File System
+- Enable Camera
+
+sudo rpi-update
+sudo reboot
+
+## 3 - Instalar FFmpeg
+No hay binarios de FFmpeg para descargar ya que muchas de sus dependencias, como x264, no se pueden distribuir legalmente por lo que hay que compilarlo directamente en la Raspi. 
+
+https://www.bitpi.co/2015/08/19/how-to-compile-ffmpeg-on-a-raspberry-pi/
+libfaac: http://raspberrypi.stackexchange.com/questions/10250/how-do-i-install-libfaac-dev-on-raspi?lq=1
+http://ccm.net/faq/809-debian-apt-get-no-pubkey-gpg-error
+
+Una vez instalado hacemos una prueba de captura para ver que funciona bien
+
+raspivid -t 10000 -w 500 -h 500 -o - | ffmpeg -i - test.mp4
+
+Para ver si lo ha capturado bien copiamos el video de la raspi a nuestro ordenador mediante netcat y comprobamos
+
+Ordenador que recibe: nc -lp 5000 > test.mp4
+Raspi que manda: nc "IpAdress del ordenador" 5000 < test.mp4
+
+## 3 - Audio
+
+lsusb
+enchufamos la USB sound card
+lsusb
+Bus 001 Device 004: ID 1b3f:2007 Generalplus Technology Inc.
+arecord -l
+**** List of CAPTURE Hardware Devices ****
+card 1: Device [USB Audio Device], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+....
