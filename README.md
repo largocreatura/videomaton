@@ -8,7 +8,7 @@ Este videomatón consta de:
 - Tarjeta de Sonido USB
 - Micrófono minijack
 - PiTFT 2,8" capacitiva
-- USB wifi dongle
+- USB wifi dongle (Para la instalación recomiendo trabajar con cable Ethernet)
 - Carcasa en 3D (modelo por corte láser o impreso en 3D)
 
 Este videomatón está inspirado en este [GIFmatón](http://www.drumminhands.com/2014/06/15/raspberry-pi-photo-booth/) que encontré buscando información relacionada, el cual está muy bien documentado. Este GIFmatón realiza una serie de fotos, monta un GIF y después lo sube a una página de Tumblr que tengas mediante la API. El código está en Python y funciona perfectamente.
